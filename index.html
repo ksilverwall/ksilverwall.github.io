@@ -15,7 +15,6 @@
     --paper: #E9EEEC;
     --paper-dim: rgba(233,238,236,0.62);
     --line: rgba(233,238,236,0.16);
-    --grid-line: rgba(233,238,236,0.06);
     --line-strong: rgba(233,238,236,0.32);
     --brass: #B58A4A;
     --brass-soft: rgba(181,138,74,0.16);
@@ -38,18 +37,6 @@
   a:focus-visible, button:focus-visible {
     outline: 2px solid var(--brass);
     outline-offset: 3px;
-  }
-
-  .grid-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: linear-gradient(to bottom, transparent, black 8%, black 70%, transparent);
   }
 
   .wrap {
@@ -222,8 +209,6 @@
 </style>
 </head>
 <body>
-  <div class="grid-bg" aria-hidden="true"></div>
-
   <div class="wrap">
     <header class="top">
       <span class="top-brand"><span class="mark"></span>リベラルアーキテクチャ</span>
