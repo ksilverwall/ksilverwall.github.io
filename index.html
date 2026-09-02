@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常見一樹 | リベラルアーキテクチャ</title>
+<meta name="description" content="リベラルアーキテクチャ 常見一樹。システム開発を軸に、サイト運用・コンテンツ制作・AI活用までを担う個人事業。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16283F;
+    --ink-2: #1E3452;
+    --paper: #E9EEEC;
+    --paper-dim: rgba(233,238,236,0.62);
+    --line: rgba(233,238,236,0.16);
+    --line-strong: rgba(233,238,236,0.32);
+    --brass: #B58A4A;
+    --brass-soft: rgba(181,138,74,0.16);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Zen Kaku Gothic New', 'Space Grotesk', sans-serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+  }
+
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, transparent, black 8%, black 85%, transparent);
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--paper-dim);
+  }
+
+  .mark {
+    width: 9px;
+    height: 9px;
+    border: 1.5px solid var(--brass);
+    transform: rotate(45deg);
+    display: inline-block;
+    margin-right: 10px;
+    flex: none;
+  }
+
+  .top-brand { display: flex; align-items: center; }
+
+  section {
+    padding: 96px 0 0;
+    border-bottom: 1px solid var(--line);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  .hero { padding-top: 64px; padding-bottom: 88px; }
+
+  .hero h1 {
+    font-size: clamp(40px, 8vw, 64px);
+    font-weight: 900;
+    margin: 0 0 18px;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s ease-out 0.15s forwards;
+  }
+
+  .hero .role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    color: var(--brass);
+    letter-spacing: 0.03em;
+    margin: 0 0 28px;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.3s forwards;
+  }
+
+  .hero .lead {
+    font-size: 17px;
+    color: var(--paper-dim);
+    max-width: 34em;
+    margin: 0;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.45s forwards;
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1, .hero .role, .hero .lead { animation: none; opacity: 1; transform: none; }
+  }
+
+  h2.section-title {
+    font-size: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.03em;
+    color: var(--paper-dim);
+    margin: 0 0 40px;
+    padding-bottom: 40px;
+  }
+
+  .services { padding-bottom: 88px; }
+  .service-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+  }
+  .service-row:last-child { border-bottom: none; }
+  .service-row h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+  }
+  .service-row p {
+    margin: 0;
+    color: var(--paper-dim);
+    font-size: 15px;
+  }
+
+  .stack { padding-bottom: 88px; }
+  .stack-item {
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 20px;
+    align-items: baseline;
+  }
+  .stack-item:last-child { border-bottom: none; }
+  .stack-item .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--paper);
+  }
+  .stack-item .desc {
+    color: var(--paper-dim);
+    font-size: 14.5px;
+  }
+
+  .contact { padding-bottom: 100px; }
+  .contact p.lead {
+    color: var(--paper-dim);
+    margin: 0 0 28px;
+    font-size: 16px;
+  }
+  .mail-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--paper);
+    padding: 16px 26px;
+    border: 1px solid var(--paper);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .mail-btn:hover {
+    background: var(--brass);
+    border-color: var(--brass);
+    color: var(--ink);
+  }
+
+  footer {
+    padding: 40px 0 56px;
+    font-size: 13px;
+    color: var(--paper-dim);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  @media (max-width: 540px) {
+    .service-row, .stack-item {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    section { padding-top: 64px; }
+    footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header class="top">
+      <span class="top-brand"><span class="mark"></span>リベラルアーキテクチャ</span>
+      <span>個人事業</span>
+    </header>
+
+    <section class="hero">
+      <h1>常見一樹</h1>
+      <p class="role">LIBERAL ARCHITECTURE</p>
+      <p class="lead">システム開発を軸に、サイト運用・コンテンツ制作・AI活用までを一人で担う個人事業です。</p>
+    </section>
+
+    <section class="services">
+      <h2 class="section-title">事業内容</h2>
+      <div class="service-row">
+        <h3>システム開発</h3>
+        <p>Firebase・React・GASを中心に、業務に合わせたWebシステムを構築します。</p>
+      </div>
+      <div class="service-row">
+        <h3>サイト運用</h3>
+        <p>公開後の運用・保守・改善まで、継続して伴走します。</p>
+      </div>
+      <div class="service-row">
+        <h3>コンテンツ制作</h3>
+        <p>AIを活用しながら、伝わる文章・コンテンツを制作します。</p>
+      </div>
+      <div class="service-row">
+        <h3>AI活用</h3>
+        <p>プロンプト設計や、業務へのAI導入を支援します。</p>
+      </div>
+    </section>
+
+    <section class="stack">
+      <h2 class="section-title">使える技術</h2>
+      <div class="stack-item">
+        <span class="name">Firebase</span>
+        <span class="desc">Firestore / Cloud Functions / Hosting</span>
+      </div>
+      <div class="stack-item">
+        <span class="name">React</span>
+        <span class="desc">フロントエンド開発</span>
+      </div>
+      <div class="stack-item">
+        <span class="name">GAS</span>
+        <span class="desc">Google Apps Script による業務自動化</span>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2 class="section-title">ご相談</h2>
+      <p class="lead">お仕事のご相談はメールでお気軽にどうぞ。</p>
+      <a class="mail-btn" href="mailto:ksilverknowledge@gmail.com">ksilverknowledge@gmail.com</a>
+    </section>
+
+    <footer>
+      <span>リベラルアーキテクチャ</span>
+      <span>常見一樹</span>
+    </footer>
+  </div>
+</body>
+</html>
